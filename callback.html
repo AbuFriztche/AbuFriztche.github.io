@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Discord Login</title>
+</head>
+<body>
+
+<h1>Discord doğrulanıyor...</h1>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const code = params.get("code");
+
+if(code){
+    console.log("Discord Code:", code);
+
+    // Burada kodu backend'e gönderirsin
+    // fetch("https://senin-api.com/auth", {...})
+
+}else{
+    document.body.innerHTML = "Code alınamadı.";
+}
+</script>
+
+</body>
+</html>
