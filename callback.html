@@ -1,25 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Discord Login</title>
+<meta charset="UTF-8">
+<title>Discord Doğrulama</title>
+
+<style>
+body{
+    background:#2c2f33;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+    margin-top:150px;
+}
+</style>
+
 </head>
+
 <body>
 
-<h1>Discord doğrulanıyor...</h1>
+<h2>Discord doğrulanıyor...</h2>
 
 <script>
+
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
 
 if(code){
-    console.log("Discord Code:", code);
 
-    // Burada kodu backend'e gönderirsin
-    // fetch("https://senin-api.com/auth", {...})
+document.body.innerHTML = "<h2>Giriş başarılı!</h2><p>Authorization Code:</p><code>"+code+"</code>";
+
+console.log("Discord Code:", code);
+
+// Buradan backend API'ye gönderilebilir
+// fetch("https://api.site.com/auth", {method:"POST", body:JSON.stringify({code})})
 
 }else{
-    document.body.innerHTML = "Code alınamadı.";
+
+document.body.innerHTML = "<h2>Doğrulama başarısız.</h2>";
+
 }
+
 </script>
 
 </body>
