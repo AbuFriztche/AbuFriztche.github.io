@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Discord Login</title>
+
+<style>
+body{
+    background:#2c2f33;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+    margin-top:150px;
+}
+
+.container{
+    background:#23272A;
+    display:inline-block;
+    padding:40px;
+    border-radius:15px;
+}
+
+button{
+    background:#5865F2;
+    border:none;
+    padding:15px 35px;
+    font-size:18px;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#4752C4;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Discord ile Giriş</h1>
+
+<p>Devam etmek için Discord hesabın ile giriş yap.</p>
+
+<button onclick="login()">Discord ile Giriş Yap</button>
+
+</div>
+
+<script>
+
+function login(){
+
+const url = "https://discord.com/oauth2/authorize?client_id=1465410643157848146&response_type=code&redirect_uri=https%3A%2F%2Fabufriztche.github.io%2Fcallback.html&scope=identify+email";
+
+window.location.href = url;
+
+}
+
+</script>
+
+</body>
+</html>
