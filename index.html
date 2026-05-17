@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Bypass | DDoS Protection & Attack</title>
+<meta name="description" content="Bypass - Professional DDoS Protection & Attack Services. Specialized in Roblox, Discord, Minecraft, IP and more.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#ff0000;--red2:#cc0000;--red3:#8b0000;--glow:#ff1a1a;--black:#0a0a0a;--black2:#111;--black3:#1a1a1a;--card:#0d0d0d;--gray:#2a2a2a;--gray2:#888;--white:#fff;--white2:#ccc;--glass:rgba(10,10,10,0.85);--border:rgba(255,0,0,0.15);--shadow:rgba(255,0,0,0.1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Rajdhani',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;cursor:none}
+a{text-decoration:none;color:inherit}
+::selection{background:var(--red);color:#000}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--black2)}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px}
+
+/* CUSTOM CURSOR */
+.cursor{position:fixed;width:8px;height:8px;background:var(--red);border-radius:50%;pointer-events:none;z-index:99999;mix-blend-mode:difference;transition:transform .15s ease}
+.cursor-follower{position:fixed;width:40px;height:40px;border:1px solid rgba(255,0,0,0.3);border-radius:50%;pointer-events:none;z-index:99998;transition:transform .3s ease,width .3s,height .3s,border .3s}
+.cursor-follower.hover{width:60px;height:60px;border-color:var(--red);background:rgba(255,0,0,0.05)}
+
+/* PRELOADER */
+.preloader{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--black);display:flex;align-items:center;justify-content:center;z-index:999999;transition:opacity .6s,visibility .6s}
+.preloader.hidden{opacity:0;visibility:hidden}
+.preloader-inner{text-align:center}
+.preloader-logo{font-family:'Orbitron',sans-serif;font-size:clamp(3rem,8vw,6rem);font-weight:900;color:var(--red);text-shadow:0 0 60px rgba(255,0,0,0.4);animation:loaderPulse 1.5s ease-in-out infinite}
+.preloader-sub{color:var(--gray2);margin-top:1rem;font-size:1rem;letter-spacing:4px;text-transform:uppercase;animation:loaderFade 2s ease-in-out infinite}
+.preloader-bar{width:240px;height:2px;background:var(--gray);margin:2rem auto 0;border-radius:2px;overflow:hidden}
+.preloader-bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--glow));animation:loaderFill 2.5s ease forwards}
+@keyframes loaderPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.05);opacity:.8}}
+@keyframes loaderFade{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes loaderFill{0%{width:0}50%{width:70%}100%{width:100%}}
+
+/* SCROLL PROGRESS */
+.scroll-progress{position:fixed;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--red),var(--glow));z-index:99999;transition:width .1s}
+
+/* NAVBAR */
+.navbar{position:fixed;top:0;left:0;width:100%;padding:1.5rem 0;z-index:9999;transition:all .4s}
+.navbar.scrolled{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:.8rem 0}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Orbitron',sans-serif;font-size:1.8rem;font-weight:900;color:var(--red);letter-spacing:2px;position:relative}
+.nav-logo span{color:var(--white)}
+.nav-logo::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--red);transition:width .4s}
+.nav-logo:hover::after{width:100%}
+.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--white2);font-weight:500;font-size:1.05rem;letter-spacing:1px;text-transform:uppercase;position:relative;padding:.5rem 0;transition:color .3s;cursor:pointer}
+.nav-links a::before{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--red);transition:width .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--red)}
+.nav-links a:hover::before,.nav-links a.active::before{width:100%}
+.discord-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.5rem;background:linear-gradient(135deg,var(--red),var(--red3));color:var(--white);font-weight:600;font-size:.95rem;text-transform:uppercase;letter-spacing:1px;border:none;border-radius:4px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.discord-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transition:left .5s}
+.discord-btn:hover::before{left:100%}
+.discord-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,0,0,.35)}
+.mobile-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;background:none;border:none;z-index:100}
+.mobile-toggle span{display:block;width:25px;height:2px;background:var(--white);transition:all .3s}
+.mobile-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.mobile-toggle.active span:nth-child(2){opacity:0}
+.mobile-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:80px}
+.hero-grid{position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(rgba(255,0,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,0,0,.03) 1px,transparent 1px);background-size:50px 50px;z-index:0}
+.hero-glow{position:absolute;top:-30%;left:-20%;width:140%;height:140%;background:radial-gradient(ellipse at 50% 50%,rgba(255,0,0,.06),transparent 60%);pointer-events:none;z-index:0;animation:heroGlow 8s ease-in-out infinite}
+@keyframes heroGlow{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(2%,-2%) scale(1.05)}66%{transform:translate(-2%,2%) scale(.95)}}
+.hero-content{position:relative;z-index:2;width:100%;max-width:1280px;margin:0 auto;padding:0 2rem}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1.2rem;border:1px solid rgba(255,0,0,.3);border-radius:50px;font-size:.8rem;text-transform:uppercase;letter-spacing:2px;color:var(--red);margin-bottom:2rem;animation:fadeInUp .8s forwards;opacity:0}
+.hero-badge .dot{width:6px;height:6px;background:var(--red);border-radius:50%;animation:dotPulse 2s ease-in-out infinite}
+@keyframes dotPulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-title{font-family:'Orbitron',sans-serif;font-size:clamp(2.8rem,7vw,6rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem;animation:fadeInUp .8s .2s forwards;opacity:0}
+.hero-title .line{display:block}
+.hero-title .hl{background:linear-gradient(135deg,var(--red),#ff4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-title .type-text{color:var(--white);border-right:3px solid var(--red);padding-right:5px;animation:blink .8s step-end infinite}
+@keyframes blink{0%,100%{border-color:var(--red)}50%{border-color:transparent}}
+.hero-sub{font-size:1.15rem;color:var(--gray2);max-width:600px;line-height:1.8;margin-bottom:2rem;animation:fadeInUp .8s .4s forwards;opacity:0}
+.hero-btns{display:flex;gap:1.5rem;flex-wrap:wrap;animation:fadeInUp .8s .6s forwards;opacity:0}
+.btn-primary,.btn-outline{display:inline-flex;align-items:center;gap:.75rem;padding:1rem 2.5rem;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:1rem;text-transform:uppercase;letter-spacing:2px;border-radius:4px;cursor:pointer;transition:all .4s;position:relative;overflow:hidden}
+.btn-primary{background:linear-gradient(135deg,var(--red),var(--red3));color:var(--white);border:none}
+.btn-primary::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .5s}
+.btn-primary:hover::before{left:100%}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(255,0,0,.4)}
+.btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.2)}
+.btn-outline:hover{border-color:var(--red);background:rgba(255,0,0,.1);transform:translateY(-3px);box-shadow:0 8px 25px rgba(255,0,0,.2)}
+
+/* PLATFORM BADGES */
+.platforms{margin-top:2.5rem;animation:fadeInUp .8s .7s forwards;opacity:0}
+.platforms-label{font-size:.8rem;color:var(--gray2);text-transform:uppercase;letter-spacing:2px;margin-bottom:1rem}
+.platform-badges{display:flex;gap:.8rem;flex-wrap:wrap}
+.platform-badge{display:flex;align-items:center;gap:.5rem;padding:.5rem 1.2rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:4px;font-size:.85rem;color:var(--white2);transition:all .3s}
+.platform-badge:hover{background:rgba(255,0,0,.1);border-color:var(--red);color:var(--red);transform:translateY(-3px)}
+.platform-badge .p-icon{font-size:1.1rem}
+
+/* HERO STATS */
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:4rem;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,.05);animation:fadeInUp .8s .9s forwards;opacity:0}
+.hero-stat{text-align:center}
+.stat-val{font-family:'Orbitron',sans-serif;font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;color:var(--red);text-shadow:0 0 30px rgba(255,0,0,.3)}
+.stat-lbl{font-size:.85rem;color:var(--gray2);text-transform:uppercase;letter-spacing:1px;margin-top:.3rem}
+
+/* MATRIX CANVAS */
+#matrixCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.15}
+
+/* SECTION COMMON */
+.section{padding:8rem 0;position:relative;z-index:1}
+.section-alt{background:linear-gradient(180deg,var(--black),var(--black2),var(--black))}
+.section-header{text-align:center;margin-bottom:4rem}
+.section-tag{display:inline-block;font-size:.8rem;text-transform:uppercase;letter-spacing:3px;color:var(--red);margin-bottom:1rem;font-weight:500}
+.section-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:700;margin-bottom:1rem}
+.section-title span{color:var(--red)}
+.section-divider{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent);margin:1.5rem auto}
+.section-sub{color:var(--gray2);font-size:1.05rem;max-width:600px;margin:0 auto;line-height:1.7}
+.container{max-width:1280px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+.svc-card{background:var(--card);border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:2.5rem 2rem;transition:all .5s;position:relative;overflow:hidden;transform-style:preserve-3d}
+.svc-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--red),transparent);transform:scaleX(0);transition:transform .5s}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-card:hover{border-color:rgba(255,0,0,.2);transform:translateY(-10px);box-shadow:0 20px 50px rgba(255,0,0,.1)}
+.svc-icon{width:60px;height:60px;background:rgba(255,0,0,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;font-size:1.5rem;transition:all .4s}
+.svc-card:hover .svc-icon{background:rgba(255,0,0,.2);transform:scale(1.1) rotateY(10deg)}
+.svc-card h3{font-family:'Orbitron',sans-serif;font-size:1.2rem;margin-bottom:.8rem}
+.svc-card p{color:var(--gray2);line-height:1.6;font-size:.95rem}
+
+/* SERVICE CATEGORY TABS */
+.svc-tabs{display:flex;justify-content:center;gap:1rem;margin-bottom:3rem;flex-wrap:wrap}
+.svc-tab{padding:.8rem 2rem;border:1px solid rgba(255,255,255,.1);border-radius:4px;background:transparent;color:var(--white2);font-family:'Rajdhani',sans-serif;font-size:.95rem;text-transform:uppercase;letter-spacing:1px;cursor:pointer;transition:all .3s}
+.svc-tab:hover,.svc-tab.active{border-color:var(--red);color:var(--red);background:rgba(255,0,0,.08)}
+.svc-category{display:none}
+.svc-category.active{display:grid}
+
+/* OPERATIONS */
+.ops-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:2rem}
+.op-card{background:var(--card);border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:2.5rem;transition:all .4s;position:relative}
+.op-card:hover{border-color:rgba(255,0,0,.2);transform:translateY(-5px);box-shadow:0 20px 50px rgba(255,0,0,.08)}
+.op-date{font-size:.8rem;color:var(--red);text-transform:uppercase;letter-spacing:2px;font-weight:500;margin-bottom:.5rem}
+.op-card h3{font-family:'Orbitron',sans-serif;font-size:1.3rem;margin-bottom:.8rem}
+.op-card p{color:var(--gray2);line-height:1.6;font-size:.95rem;margin-bottom:1.2rem}
+.op-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.op-tag{padding:.3rem .8rem;background:rgba(255,0,0,.1);border:1px solid rgba(255,0,0,.15);border-radius:4px;font-size:.75rem;color:var(--red);text-transform:uppercase;letter-spacing:1px;font-weight:500}
+
+/* API - PRIVATE BETA */
+.api-private{text-align:center;padding:6rem 2rem;background:var(--card);border:1px solid rgba(255,0,0,.1);border-radius:12px;position:relative;overflow:hidden}
+.api-private-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(255,0,0,.02),rgba(255,0,0,.05));pointer-events:none}
+.api-lock-icon{font-size:5rem;margin-bottom:1.5rem;animation:lockFloat 3s ease-in-out infinite}
+@keyframes lockFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-10px) scale(1.05)}}
+.api-private h2{font-family:'Orbitron',sans-serif;font-size:2.5rem;margin-bottom:1rem}
+.api-private h2 span{color:var(--red)}
+.api-private p{color:var(--gray2);font-size:1.05rem;max-width:500px;margin:0 auto 2rem;line-height:1.7}
+.api-status{margin-top:2rem;display:inline-flex;align-items:center;gap:.8rem;padding:.8rem 2rem;background:rgba(255,200,0,.08);border:1px solid rgba(255,200,0,.2);border-radius:4px;color:#ffc800;font-size:.9rem;text-transform:uppercase;letter-spacing:2px}
+.api-status .pulse-dot{width:8px;height:8px;background:#ffc800;border-radius:50%;animation:dotPulse 1.5s ease-in-out infinite}
+.api-glitch-text{font-family:'Orbitron',sans-serif;font-size:1.2rem;color:var(--gray2);margin-top:2rem;letter-spacing:4px;text-transform:uppercase;position:relative;display:inline-block}
+.api-glitch-text::before,.api-glitch-text::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;opacity:.8}
+.api-glitch-text::before{color:var(--red);z-index:-1;animation:glitch1 2s infinite linear alternate-reverse}
+.api-glitch-text::after{color:#0ff;z-index:-2;animation:glitch2 3s infinite linear alternate-reverse}
+@keyframes glitch1{0%{transform:translate(0)}20%{transform:translate(-2px,2px)}40%{transform:translate(2px,-1px)}60%{transform:translate(-1px,1px)}80%{transform:translate(1px,-2px)}100%{transform:translate(0)}}
+@keyframes glitch2{0%{transform:translate(0)}25%{transform:translate(3px,-1px)}50%{transform:translate(-2px,2px)}75%{transform:translate(1px,3px)}100%{transform:translate(0)}}
+
+/* CONTACT */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.discord-cta{background:linear-gradient(135deg,rgba(255,0,0,.08),rgba(255,0,0,.02));border:1px solid rgba(255,0,0,.15);border-radius:12px;padding:3rem;text-align:center}
+.discord-cta-icon{font-size:4rem;margin-bottom:1.5rem;animation:lockFloat 3s ease-in-out infinite}
+.discord-cta h3{font-family:'Orbitron',sans-serif;font-size:1.6rem;margin-bottom:1rem}
+.discord-cta p{color:var(--gray2);line-height:1.7;margin-bottom:2rem}
+.contact-form{display:flex;flex-direction:column;gap:1.5rem}
+.form-group{display:flex;flex-direction:column;gap:.5rem}
+.form-group label{font-size:.85rem;text-transform:uppercase;letter-spacing:1px;color:var(--gray2);font-weight:500}
+.form-group input,.form-group textarea,.form-group select{padding:1rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:4px;color:var(--white);font-family:'Rajdhani',sans-serif;font-size:1rem;transition:all .3s;outline:none}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--red);box-shadow:0 0 20px rgba(255,0,0,.1);background:rgba(255,255,255,.05)}
+.form-group textarea{min-height:130px;resize:vertical}
+.form-group select option{background:var(--black);color:var(--white)}
+
+/* FOOTER */
+.footer{padding:4rem 0 2rem;border-top:1px solid rgba(255,255,255,.05)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-brand{font-family:'Orbitron',sans-serif;font-size:1.5rem;font-weight:900;color:var(--red);margin-bottom:1rem;letter-spacing:2px}
+.footer-brand span{color:var(--white)}
+.footer-about{color:var(--gray2);line-height:1.7;font-size:.9rem}
+.footer h4{font-family:'Orbitron',sans-serif;font-size:1rem;margin-bottom:1.5rem}
+.footer ul{list-style:none;display:flex;flex-direction:column;gap:.8rem}
+.footer ul a{color:var(--gray2);font-size:.9rem;transition:color .3s;cursor:pointer}
+.footer ul a:hover{color:var(--red)}
+.footer-bottom{padding-top:2rem;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{color:var(--gray2);font-size:.85rem}
+.footer-socials{display:flex;gap:.8rem}
+.footer-socials a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.1);border-radius:4px;color:var(--gray2);text-decoration:none;transition:all .3s;cursor:pointer}
+.footer-socials a:hover{border-color:var(--red);color:var(--red);background:rgba(255,0,0,.1)}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(50px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.reveal.active{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-60px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.reveal-l.active{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(60px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.reveal-r.active{opacity:1;transform:translateX(0)}
+.reveal-s{opacity:0;transform:scale(.9);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.reveal-s.active{opacity:1;transform:scale(1)}
+.reveal-stagger>*{opacity:0;transform:translateY(30px);transition:all .6s cubic-bezier(.16,1,.3,1)}
+.reveal-stagger.active>*{opacity:1;transform:translateY(0)}
+.reveal-stagger.active>*:nth-child(1){transition-delay:0s}
+.reveal-stagger.active>*:nth-child(2){transition-delay:.1s}
+.reveal-stagger.active>*:nth-child(3){transition-delay:.2s}
+.reveal-stagger.active>*:nth-child(4){transition-delay:.3s}
+.reveal-stagger.active>*:nth-child(5){transition-delay:.4s}
+.reveal-stagger.active>*:nth-child(6){transition-delay:.5s}
+
+/* ANIMATIONS */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 20px rgba(255,0,0,.2)}50%{box-shadow:0 0 40px rgba(255,0,0,.4)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes borderGlow{0%,100%{border-color:rgba(255,0,0,.2);box-shadow:0 0 15px rgba(255,0,0,.05)}50%{border-color:rgba(255,0,0,.4);box-shadow:0 0 30px rgba(255,0,0,.1)}}
+@keyframes scalePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes glitch{0%{text-shadow:.05em 0 0 var(--red),-.05em 0 0 #0ff}25%{text-shadow:-.05em .025em 0 var(--red),.05em -.025em 0 #0ff}50%{text-shadow:.05em -.05em 0 var(--red),-.05em .05em 0 #0ff}75%{text-shadow:-.05em .05em 0 var(--red),.05em -.05em 0 #0ff}100%{text-shadow:.05em 0 0 var(--red),-.05em 0 0 #0ff}}
+
+/* GLITCH TEXT UTILITY */
+.glitch{animation:glitch .5s infinite}
+
+/* FLOATING ORBS */
+.floating-orb{position:absolute;border-radius:50%;background:radial-gradient(circle at center,rgba(255,0,0,.08),transparent);pointer-events:none;z-index:0}
+.floating-orb:nth-child(1){width:400px;height:400px;top:-10%;left:-10%;animation:orbFloat 12s ease-in-out infinite}
+.floating-orb:nth-child(2){width:300px;height:300px;bottom:-5%;right:-5%;animation:orbFloat 15s ease-in-out infinite reverse}
+.floating-orb:nth-child(3){width:200px;height:200px;top:50%;left:50%;animation:orbFloat 10s ease-in-out infinite 2s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(50px,-50px) scale(1.1)}50%{transform:translate(-30px,30px) scale(.9)}75%{transform:translate(40px,40px) scale(1.05)}}
+
+/* GLASS CARD EFFECT */
+.glass-card{background:rgba(255,255,255,.02);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:2rem}
+
+/* 3D TILT */
+.tilt{transform-style:preserve-3d;transition:transform .3s}
+
+/* TOAST */
+.toast{position:fixed;bottom:2rem;right:2rem;padding:1rem 2rem;background:var(--card);border:1px solid var(--border);border-radius:4px;color:var(--white);font-size:.95rem;transform:translateY(100px);opacity:0;transition:all .5s cubic-bezier(.16,1,.3,1);z-index:99999}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* RESPONSIVE */
+@media(max-width:1024px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){
+.mobile-toggle{display:flex}
+.nav-links{position:fixed;top:0;right:-100%;width:300px;height:100vh;background:var(--glass);backdrop-filter:blur(20px);flex-direction:column;justify-content:center;padding:2rem;transition:right .5s cubic-bezier(.16,1,.3,1);border-left:1px solid var(--border)}
+.nav-links.open{right:0}
+.hero-stats{grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.contact-wrap{grid-template-columns:1fr;gap:2rem}
+.footer-grid{grid-template-columns:1fr}
+.ops-grid{grid-template-columns:1fr}
+.hero-btns{flex-direction:column}
+.btn-primary,.btn-outline{width:100%;justify-content:center}
+.hero-title{font-size:clamp(2rem,6vw,3.5rem)}
+body{cursor:auto}
+.cursor,.cursor-follower{display:none}
+}
+@media(max-width:480px){
+.container{padding:0 1.2rem}
+.hero-stats{grid-template-columns:1fr 1fr;gap:1rem}
+.stat-val{font-size:1.3rem}
+}
+
+/* MATRIX OVERLAY HELPERS */
+.matrix-overlay{position:relative}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="follower"></div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<div class="preloader" id="preloader">
+<div class="preloader-inner">
+<div class="preloader-logo">BYPASS</div>
+<div class="preloader-sub">Initializing Network</div>
+<div class="preloader-bar"><div class="preloader-bar-fill"></div></div>
+</div>
+</div>
+
+<canvas id="matrixCanvas"></canvas>
+
+<nav class="navbar" id="navbar">
+<div class="nav-inner">
+<a href="#home" class="nav-logo">BYPASS<span>.</span></a>
+<ul class="nav-links" id="navLinks">
+<li><a onclick="navigate('home')" class="active">Home</a></li>
+<li><a onclick="navigate('services')">Services</a></li>
+<li><a onclick="navigate('operations')">Operations</a></li>
+<li><a onclick="navigate('api')">API</a></li>
+<li><a onclick="navigate('contact')">Contact</a></li>
+<li><a href="https://discord.gg/bypass" target="_blank" class="discord-btn">Join Discord</a></li>
+</ul>
+<button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+<span></span><span></span><span></span>
+</button>
+</div>
+</nav>
+
+<section class="hero" id="home">
+<div class="hero-grid"></div>
+<div class="hero-glow"></div>
+<div class="hero-content">
+<div class="hero-badge"><span class="dot"></span> Professional DDoS Division — Since 2022</div>
+<h1 class="hero-title">
+<span class="line">Bypass The</span>
+<span class="line hl">Limitations</span>
+<span class="line">We Are <span class="type-text" id="typeText">Bypass</span></span>
+</h1>
+<p class="hero-sub">
+Professional DDoS protection & attack specialists. We break what others can't — <br>
+securing and stress-testing the world's most challenging infrastructures.
+</p>
+<div class="hero-btns">
+<a onclick="navigate('services')" class="btn-primary">Explore Arsenal →</a>
+<a href="https://discord.gg/bypass" target="_blank" class="btn-outline">Join Dark Network</a>
+</div>
+<div class="platforms">
+<div class="platforms-label">Compatible Platforms</div>
+<div class="platform-badges">
+<span class="platform-badge"><span class="p-icon">🎮</span> Roblox</span>
+<span class="platform-badge"><span class="p-icon">💬</span> Discord</span>
+<span class="platform-badge"><span class="p-icon">⛏️</span> Minecraft</span>
+<span class="platform-badge"><span class="p-icon">🌐</span> IP Targeting</span>
+<span class="platform-badge"><span class="p-icon">🛡️</span> Layer 3-7</span>
+<span class="platform-badge"><span class="p-icon">⚡</span> Custom Vectors</span>
+</div>
+</div>
+<div class="hero-stats">
+<div class="hero-stat"><div class="stat-val" data-target="1547">0+</div><div class="stat-lbl">Operations</div></div>
+<div class="hero-stat"><div class="stat-val" data-target="100">0+</div><div class="stat-lbl">Uptime %</div></div>
+<div class="hero-stat"><div class="stat-val" data-target="892">0+</div><div class="stat-lbl">Clients</div></div>
+<div class="hero-stat"><div class="stat-val" data-target="47">0+</div><div class="stat-lbl">Countries</div></div>
+</div>
+</div>
+</section>
+
+<section class="section section-alt" id="services">
+<div class="floating-orb"></div>
+<div class="floating-orb"></div>
+<div class="floating-orb"></div>
+<div class="container">
+<div class="section-header reveal">
+<div class="section-tag">Dual Nature</div>
+<h2 class="section-title">Protection <span>&</span> Attack</h2>
+<div class="section-divider"></div>
+<p class="section-sub">Master both sides of the network security spectrum. Shield or strike — we own every layer.</p>
+</div>
+
+<div class="svc-tabs reveal">
+<button class="svc-tab active" onclick="switchSvc('attack',this)">⚔️ Attack Services</button>
+<button class="svc-tab" onclick="switchSvc('protect',this)">🛡️ Protection Services</button>
+</div>
+
+<div class="svc-category active" id="svcAttack">
+<div class="services-grid reveal-stagger">
+<div class="svc-card">
+<div class="svc-icon">⚡</div>
+<h3>Layer 7 Flood</h3>
+<p>Devastating HTTP/HTTPS flood attacks targeting application layer. Bypass WAF, CDN, and reverse proxies with proprietary techniques.</p>
+</div>
+<div class="svc-card">
+<div class="svc-icon">🌊</div>
+<h3>Network Stress</h3>
+<p>Multi-gigabit UDP/TCP/SYN floods that saturate any pipe size. Custom packet crafting for maximum impact.</p>
+</div>
+<div class="svc-card">
+<div class="svc-icon">🎮</div>
+<h3>Game Server Attack</h3>
+<p>Specialized vectors for Roblox, Minecraft, and game server infrastructures. Protocol-level exploitation for maximum disruption.</p>
+</div>
+<div class="svc-card">
+<div class="svc-icon">💬</div>
+<h3>Discord Targeting</h3>
+<p>API abuse, rate limit bypass, and infrastructure stress specifically designed for Discord's cloud architecture.</p>
+</div>
+<div class="svc-card">
+<div class="svc-icon">🔓</div>
+<h3>Bypass Protocol</h3>
+<p>Proprietary evasion techniques that bypass Cloudflare, Akamai, OVH, and other major protection systems.</p>
+</div>
+<div class="svc-card">
+<div class="svc-icon">🎯</div>
+<h3>IP Targeting</h3>
+<p>Direct infrastructure attacks against specific IP ranges, subnetworks, and dedicated servers with precision targeting.</p>
+</div>
+</div>
+</div>
+
+<div class="svc-category" id="svcProtect">
+<div class="services-grid reveal-stagger">
+<div class="svc-card">
+<div class="svc-icon">🛡️</div>
+<h3>DDoS Protection</h3>
+<p>Enterprise-grade DDoS mitigation with real-time traffic filtering, rate limiting, and automatic failover systems.</p>
+</div>
+<div class="svc-card">
+<div class="svc-icon">🔐</div>
+<h3>Infrastructure Hardening</h3>
+<p>Comprehensive security assessment and reinforcement of your network infrastructure against all known attack vectors.</p>
+</div>
+<div class="svc-card">
+<div class="svc-icon">📊</div>
+<h3>Real-Time Monitoring</h3>
+<p>24/7 traffic analysis and threat detection with instant alerting and automated response mechanisms.</p>
+</div>
+<div class="svc-card">
+<div class="svc-icon">🔄</div>
+<h3>Load Balancing</h3>
+<p>Advanced load distribution and traffic redirection to ensure uptime even under extreme stress conditions.</p>
+</div>
+<div class="svc-card">
+<div class="svc-icon">🧪</div>
+<h3>Penetration Testing</h3>
+<p>Authorized stress testing to identify vulnerabilities in your infrastructure before malicious actors exploit them.</p>
+</div>
+<div class="svc-card">
+<div class="svc-icon">📋</div>
+<h3>Security Audit</h3>
+<p>Deep-dive infrastructure analysis with detailed reporting on vulnerabilities, misconfigurations, and remediation steps.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="operations">
+<div class="container">
+<div class="section-header reveal">
+<div class="section-tag">Track Record</div>
+<h2 class="section-title">Notable <span>Operations</span></h2>
+<div class="section-divider"></div>
+<p class="section-sub">A glimpse into our most impactful operations across various platforms and infrastructures.</p>
+</div>
+<div class="ops-grid">
+<div class="op-card reveal">
+<div class="op-date">March 2026</div>
+<h3>Operation Dark Horizon</h3>
+<p>Stress-tested a major financial institution across 12 data centers. Identified 23 critical vulnerabilities in distributed network architecture.</p>
+<div class="op-tags"><span class="op-tag">Layer 7</span><span class="op-tag">Financial</span><span class="op-tag">23 Vulns</span></div>
+</div>
+<div class="op-card reveal">
+<div class="op-date">January 2026</div>
+<h3>Project Ghost Protocol</h3>
+<p>Bypassed enterprise WAF layers (Cloudflare, Akamai, Imperva) protecting a Fortune 500 tech company's API infrastructure.</p>
+<div class="op-tags"><span class="op-tag">Bypass</span><span class="op-tag">WAF</span><span class="op-tag">Fortune 500</span></div>
+</div>
+<div class="op-card reveal">
+<div class="op-date">November 2025</div>
+<h3>Operation Iron Hammer</h3>
+<p>Executed comprehensive DDoS simulation against government-grade infrastructure. Tested 400 Gbps load capacity and failover mechanisms.</p>
+<div class="op-tags"><span class="op-tag">Stress Test</span><span class="op-tag">Government</span><span class="op-tag">400 Gbps</span></div>
+</div>
+<div class="op-card reveal">
+<div class="op-date">August 2025</div>
+<h3>Operation Silk Road</h3>
+<p>Penetration testing on a major e-commerce platform handling 2M+ daily transactions. Uncovered SQL injection and auth bypass flaws.</p>
+<div class="op-tags"><span class="op-tag">Penetration</span><span class="op-tag">E-Commerce</span><span class="op-tag">SQLi</span></div>
+</div>
+<div class="op-card reveal">
+<div class="op-date">June 2025</div>
+<h3>Operation Zero Dawn</h3>
+<p>Discovered and responsibly disclosed a zero-day in a widely-used CDN caching mechanism affecting 30,000+ enterprise customers.</p>
+<div class="op-tags"><span class="op-tag">Zero-Day</span><span class="op-tag">CDN</span><span class="op-tag">Research</span></div>
+</div>
+<div class="op-card reveal">
+<div class="op-date">April 2025</div>
+<h3>Operation Black Ice</h3>
+<p>APT simulation against critical infrastructure. Maintained persistent access for 72 hours without detection by SOC monitoring.</p>
+<div class="op-tags"><span class="op-tag">APT</span><span class="op-tag">Infrastructure</span><span class="op-tag">72h</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section section-alt" id="api">
+<div class="container">
+<div class="section-header reveal">
+<div class="section-tag">Developer</div>
+<h2 class="section-title">API <span>Access</span></h2>
+<div class="section-divider"></div>
+<p class="section-sub">Powerful REST API for integrating Bypass services into your own infrastructure.</p>
+</div>
+
+<div class="api-private reveal-s">
+<div class="api-private-overlay"></div>
+<div class="api-lock-icon">🔒</div>
+<h2>Private <span>Beta</span></h2>
+<p>The Bypass API is currently in closed beta. Access is restricted to verified partners and enterprise clients only.</p>
+<div class="api-status">
+<span class="pulse-dot"></span>
+Closed Beta — Limited Access
+</div>
+<div class="api-glitch-text" data-text="API_STATUS: PRIVATE">API_STATUS: PRIVATE</div>
+<div style="margin-top:2.5rem">
+<a href="https://discord.gg/bypass" target="_blank" class="btn-primary">Request Beta Access →</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="contact">
+<div class="container">
+<div class="section-header reveal">
+<div class="section-tag">Connect</div>
+<h2 class="section-title">Enter the <span>Network</span></h2>
+<div class="section-divider"></div>
+<p class="section-sub">Join our Discord for fastest response. Alternative channels available below.</p>
+</div>
+<div class="contact-wrap">
+<div class="discord-cta reveal-l">
+<div class="discord-cta-icon">💬</div>
+<h3>Join Our Discord</h3>
+<p>Instant access to operations, support, community of 800+ security professionals. Private encrypted channels for verified clients.</p>
+<a href="https://discord.gg/bypass" target="_blank" class="btn-primary">Join Discord Server →</a>
+<div style="margin-top:1.5rem;display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap">
+<span style="padding:.4rem 1rem;background:rgba(255,0,0,.08);border-radius:4px;font-size:.8rem;color:var(--red)">⚡ Instant Support</span>
+<span style="padding:.4rem 1rem;background:rgba(255,0,0,.08);border-radius:4px;font-size:.8rem;color:var(--red)">🔒 Encrypted</span>
+<span style="padding:.4rem 1rem;background:rgba(255,0,0,.08);border-radius:4px;font-size:.8rem;color:var(--red)">🤖 Bot Integration</span>
+</div>
+</div>
+<form class="contact-form reveal-r" id="contactForm">
+<div class="form-group">
+<label for="name">Username / Handle</label>
+<input type="text" id="name" placeholder="Your alias or handle" required>
+</div>
+<div class="form-group">
+<label for="email">Secure Contact</label>
+<input type="email" id="email" placeholder="encrypted@email.com" required>
+</div>
+<div class="form-group">
+<label for="service">Service Type</label>
+<select id="service" required>
+<option value="">Select a service...</option>
+<option value="attack">Attack Service</option>
+<option value="protection">Protection Service</option>
+<option value="bypass">Bypass Protocol</option>
+<option value="api">API Access</option>
+<option value="other">Other</option>
+</select>
+</div>
+<div class="form-group">
+<label for="message">Details</label>
+<textarea id="message" placeholder="Describe your requirements..." required></textarea>
+</div>
+<button type="submit" class="btn-primary">Send Encrypted →</button>
+</form>
+</div>
+</div>
+</section>
+
+<footer class="footer" id="footer">
+<div class="container">
+<div class="footer-grid">
+<div>
+<div class="footer-brand">BYPASS<span>.</span></div>
+<p class="footer-about">Professional DDoS protection & attack division. Specializing in Roblox, Discord, Minecraft, IP targeting and beyond. We own both sides of the network security spectrum.</p>
+</div>
+<div>
+<h4>Services</h4>
+<ul>
+<li><a onclick="navigate('services')">Attack Services</a></li>
+<li><a onclick="navigate('services')">Protection Services</a></li>
+<li><a onclick="navigate('services')">Bypass Protocols</a></li>
+<li><a onclick="navigate('api')">API Access</a></li>
+</ul>
+</div>
+<div>
+<h4>Links</h4>
+<ul>
+<li><a onclick="navigate('operations')">Operations</a></li>
+<li><a onclick="navigate('api')">API</a></li>
+<li><a onclick="navigate('contact')">Contact</a></li>
+<li><a href="https://discord.gg/bypass" target="_blank">Discord</a></li>
+</ul>
+</div>
+<div>
+<h4>Legal</h4>
+<ul>
+<li><a>Terms of Service</a></li>
+<li><a>Privacy Policy</a></li>
+<li><a>Disclaimer</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; 2026 Bypass. All rights reserved. | Authorized security testing only.</p>
+<div class="footer-socials">
+<a href="https://discord.gg/bypass" target="_blank" title="Discord">DC</a>
+<a title="Telegram">TG</a>
+<a title="X">X</a>
+<a title="Email">@</a>
+</div>
+</div>
+</div>
+</footer>
+
+<script>
+// ===== PRELOADER =====
+(function(){
+  const p = document.getElementById('preloader');
+  function hide(){
+    p.classList.add('hidden');
+    document.body.style.overflow='';
+    initMatrix();
+    initCursor();
+  }
+  window.addEventListener('load',()=>setTimeout(hide,2000));
+  setTimeout(hide,4000);
+})();
+
+// ===== MATRIX RAIN =====
+function initMatrix(){
+  const c=document.getElementById('matrixCanvas');
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  let w,h,cols,drops;
+  function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight;cols=Math.floor(w/14);drops=Array(cols).fill(1)}
+  resize();
+  window.addEventListener('resize',resize);
+  const chars='アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789<>/{}[]|&^%$#@!';
+  function draw(){
+    ctx.fillStyle='rgba(10,10,10,0.05)';
+    ctx.fillRect(0,0,w,h);
+    ctx.fillStyle='#f00';
+    ctx.font='14px monospace';
+    for(let i=0;i<drops.length;i++){
+      const text=chars[Math.floor(Math.random()*chars.length)];
+      ctx.fillStyle=`rgba(255,0,0,${Math.random()*0.5+0.1})`;
+      ctx.fillText(text,i*14,drops[i]*14);
+      if(drops[i]*14>h&&Math.random()>0.975)drops[i]=0;
+      drops[i]++;
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// ===== CUSTOM CURSOR =====
+function initCursor(){
+  const c=document.getElementById('cursor');
+  const f=document.getElementById('follower');
+  if(!c||!f)return;
+  let mx=0,my=0,fx=0,fy=0;
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    c.style.transform=`translate(${mx-4}px,${my-4}px)`;
+  });
+  function follow(){
+    fx+=(mx-fx)*0.1;fy+=(my-fy)*0.1;
+    f.style.transform=`translate(${fx-20}px,${fy-20}px)`;
+    requestAnimationFrame(follow);
+  }
+  follow();
+  document.querySelectorAll('a,button,.svc-card,.op-card,.platform-badge').forEach(el=>{
+    el.addEventListener('mouseenter',()=>f.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>f.classList.remove('hover'));
+  });
+}
+
+// ===== SCROLL PROGRESS =====
+window.addEventListener('scroll',()=>{
+  const bar=document.getElementById('scrollProgress');
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  const p=(window.scrollY/h)*100;
+  bar.style.width=p+'%';
+});
+
+// ===== NAVBAR SCROLL =====
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('navbar');
+  nav.classList.toggle('scrolled',window.scrollY>50);
+});
+
+// ===== NAVIGATION =====
+function navigate(id){
+  const el=document.getElementById(id);
+  if(el){
+    const offset=80;
+    const top=el.getBoundingClientRect().top+window.scrollY-offset;
+    window.scrollTo({top,behavior:'smooth'});
+  }
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.querySelectorAll(`.nav-links a[onclick*="${id}"]`).forEach(a=>a.classList.add('active'));
+  const toggle=document.getElementById('mobileToggle');
+  const links=document.getElementById('navLinks');
+  toggle.classList.remove('active');
+  links.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// ===== MOBILE MENU =====
+document.getElementById('mobileToggle').addEventListener('click',function(){
+  this.classList.toggle('active');
+  document.getElementById('navLinks').classList.toggle('open');
+  document.body.style.overflow=this.classList.contains('active')?'hidden':'';
+});
+
+// ===== TYPING EFFECT =====
+(function(){
+  const el=document.getElementById('typeText');
+  if(!el)return;
+  const words=['Bypass','the Matrix','Limitations','Everything','Unstoppable'];
+  let wi=0,ci=0,del=false,pause=false;
+  function type(){
+    if(pause){pause=false;setTimeout(type,2000);return}
+    if(!del){
+      el.textContent=words[wi].substring(0,ci+1);ci++;
+      if(ci===words[wi].length){pause=true;setTimeout(()=>{del=true;type()},3000);return}
+      setTimeout(type,80);
+    }else{
+      el.textContent=words[wi].substring(0,ci-1);ci--;
+      if(ci===0){del=false;wi=(wi+1)%words.length;setTimeout(type,500);return}
+      setTimeout(type,40);
+    }
+  }
+  type();
+})();
+
+// ===== COUNTERS =====
+(function(){
+  document.querySelectorAll('.stat-val[data-target]').forEach(el=>{
+    const t=parseInt(el.getAttribute('data-target'));
+    if(!t)return;
+    const obs=new IntersectionObserver(([e])=>{
+      if(e.isIntersecting){
+        let cur=0;
+        const inc=t/(2000/16);
+        const timer=setInterval(()=>{
+          cur+=inc;
+          if(cur>=t){cur=t;clearInterval(timer)}
+          el.textContent=Math.floor(cur).toLocaleString()+'+';
+        },16);
+        obs.unobserve(el);
+      }
+    },{threshold:.5});
+    obs.observe(el);
+  });
+})();
+
+// ===== SCROLL REVEAL =====
+(function(){
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting)e.target.classList.add('active');
+    });
+  },{threshold:.1,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.reveal,.reveal-l,.reveal-r,.reveal-s,.reveal-stagger').forEach(el=>obs.observe(el));
+})();
+
+// ===== SERVICE TABS =====
+function switchSvc(tab,btn){
+  document.querySelectorAll('.svc-category').forEach(el=>el.classList.remove('active'));
+  document.getElementById('svc'+(tab==='attack'?'Attack':'Protect')).classList.add('active');
+  document.querySelectorAll('.svc-tab').forEach(el=>el.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ===== 3D TILT ON CARDS =====
+document.querySelectorAll('.svc-card,.op-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=e.clientX-r.left,y=e.clientY-r.top;
+    const cx=r.width/2,cy=r.height/2;
+    const dx=(x-cx)/cx,dy=(y-cy)/cy;
+    card.style.transform=`perspective(1000px) rotateY(${dx*10}deg) rotateX(${-dy*10}deg) translateY(-10px)`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='perspective(1000px) rotateY(0) rotateX(0) translateY(0)';
+  });
+});
+
+// ===== PARALLAX ON HERO =====
+window.addEventListener('scroll',()=>{
+  const hero=document.querySelector('.hero');
+  if(!hero)return;
+  const scrolled=window.scrollY;
+  const grid=hero.querySelector('.hero-grid');
+  const glow=hero.querySelector('.hero-glow');
+  if(grid)grid.style.transform=`translateY(${scrolled*0.05}px)`;
+  if(glow)glow.style.transform=`translateY(${scrolled*0.08}px)`;
+});
+
+// ===== GLITCH EFFECT ON HOVER =====
+document.querySelectorAll('.api-glitch-text').forEach(el=>{
+  el.addEventListener('mouseenter',()=>el.classList.add('glitch'));
+  el.addEventListener('mouseleave',()=>el.classList.remove('glitch'));
+});
+
+// ===== CONTACT FORM =====
+document.getElementById('contactForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const btn=this.querySelector('button[type="submit"]');
+  const orig=btn.textContent;
+  btn.textContent='SENDING...';btn.disabled=true;
+  setTimeout(()=>{
+    btn.textContent='✓ SENT';btn.style.background='linear-gradient(135deg,#00c864,#009944)';
+    const t=document.createElement('div');t.className='toast';t.textContent='Message sent. We will contact you soon.';
+    document.body.appendChild(t);
+    requestAnimationFrame(()=>t.classList.add('show'));
+    setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),500)},4000);
+    setTimeout(()=>{btn.textContent=orig;btn.style.background='';btn.disabled=false;this.reset()},3000);
+  },1500);
+});
+
+// ===== ACTIVE NAV LINK ON SCROLL =====
+window.addEventListener('scroll',()=>{
+  const sections=['home','services','operations','api','contact'];
+  const scrollY=window.scrollY+200;
+  let current='home';
+  sections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&scrollY>=el.offsetTop)current=id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.querySelectorAll(`.nav-links a[onclick*="${current}"]`).forEach(a=>a.classList.add('active'));
+});
+</script>
+</body>
+</html>
