@@ -106,9 +106,10 @@
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
       margin: 0 auto 20px;
-      display: none;
+      display: block;
     }
     .loader.show { display: block; }
+    .loader.hide { display: none; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .badge {
       display: inline-block;
@@ -139,8 +140,8 @@
     <div class="steps" id="steps">
       <ol>
         <li>Kodu kopyala <code>Ctrl+C</code></li>
-        <li>Terminal'e dön ve kodu yapıştır <code>Ctrl+V</code></li>
-        <li>Enter'a bas, devam et!</li>
+        <li>Terminal&apos;e dön ve kodu yapıştır <code>Ctrl+V</code></li>
+        <li>Enter&apos;a bas, devam et!</li>
       </ol>
     </div>
     <div class="badge">✓ Callback aktif</div>
@@ -160,14 +161,14 @@
     const steps = document.getElementById('steps');
 
     if (error) {
-      loader.classList.remove('show');
+      loader.classList.add('hide');
       errorBox.classList.add('show');
       errorMsg.textContent = decodeURIComponent(error);
       if (error === 'access_denied') {
         errorMsg.textContent = 'Erişim reddedildi. Lütfen tekrar dene.';
       }
     } else if (code) {
-      loader.classList.remove('show');
+      loader.classList.add('hide');
       codeBox.classList.add('show');
       authCode.textContent = code;
       copyBtn.classList.add('show');
@@ -180,16 +181,16 @@
         });
       });
     } else {
-      loader.classList.remove('show');
+      loader.classList.add('hide');
       errorBox.classList.add('show');
-      errorMsg.textContent = 'Authorization code bulunamadı. URL\'de ?code= parametresi yok.';
+      errorMsg.textContent = 'Authorization code bulunamadı. URL&apos;de ?code= parametresi yok.';
     }
 
     if (window.location.hash) {
       const hashParams = new URLSearchParams(window.location.hash.substring(1));
       const hashCode = hashParams.get('access_token');
       if (hashCode && !code) {
-        loader.classList.remove('show');
+        loader.classList.add('hide');
         codeBox.classList.add('show');
         authCode.textContent = 'access_token: ' + hashCode;
         copyBtn.classList.add('show');
