@@ -96,6 +96,37 @@ h1 {
 }
 .pct { font-family: var(--display); font-weight: 700; margin-top: 8px; color: var(--ink); font-variant-numeric: tabular-nums; }
 
+.present { font-size: 72px; line-height: 1; margin: -64px auto 4px; display: inline-block; animation: wobble 1.1s ease-in-out infinite; filter: drop-shadow(0 8px 6px rgba(91, 42, 69, .18)); }
+.card.game { width: min(460px, 100%); padding: 20px 18px; text-align: left; }
+.gtop { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.gtop h2 { font-family: var(--display); font-weight: 800; font-size: clamp(1.3rem, 5.4vw, 1.6rem); margin: 0; color: var(--berry); line-height: 1.1; }
+.gtop p { margin: 2px 0 0; color: var(--ink-soft); font-weight: 700; font-size: .92rem; }
+.timer {
+  flex: 0 0 auto; width: 62px; height: 62px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--display); font-weight: 800; font-size: 1.9rem; color: #fff;
+  background: var(--berry); box-shadow: 0 4px 0 #d94b6f; font-variant-numeric: tabular-nums;
+}
+.timer.tick { animation: tickpulse .3s ease-out; }
+@keyframes tickpulse { 0% { transform: scale(1.25); } }
+.giftcard {
+  margin: 14px 0; border-radius: 16px; padding: 14px 16px;
+  display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2px 10px;
+  color: #fff; background: linear-gradient(135deg, var(--pumpkin), var(--berry));
+  box-shadow: 0 6px 0 #d9721a;
+}
+.giftcard span { font-family: var(--mono); font-size: .8rem; letter-spacing: .14em; grid-column: 1 / -1; opacity: .9; }
+.giftcard strong { font-family: var(--display); font-weight: 800; font-size: 2.2rem; line-height: 1; }
+.giftcard em { font-style: normal; font-weight: 800; font-family: var(--display); background: rgba(0, 0, 0, .2); padding: 4px 10px; border-radius: 999px; font-variant-numeric: tabular-nums; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.tile {
+  aspect-ratio: 1; max-width: 100%; border: 0; border-radius: 16px; cursor: pointer;
+  font-size: clamp(1.5rem, 7vw, 2rem); background: var(--pink); box-shadow: 0 4px 0 var(--pink-deep);
+  transition: transform .15s, background .2s; touch-action: manipulation;
+}
+.tile:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--pink-deep); }
+.tile.done { background: #c9f5d4; box-shadow: 0 4px 0 #94dca6; transform: scale(.94); }
+.tile:focus-visible { outline: 3px solid var(--pumpkin); outline-offset: 2px; }
 #dim { position: fixed; inset: 0; background: var(--night); opacity: 0; pointer-events: none; z-index: 5; }
 #dim.flicker { animation: flicker 1.1s steps(1, end) forwards; }
 @keyframes flicker {
@@ -174,22 +205,43 @@ h1 {
       <path d="M78 14l8-8 4 10" fill="#ff9a3c"/>
     </svg>
     <p class="hello" id="hello">Hoi! 👋</p>
-    <h1>Wil je Halloween met mij vieren?</h1>
-    <div class="btns" id="btns">
-      <button class="btn yes" id="yes" type="button">🎃 Ja</button>
-      <button class="btn no" id="no" type="button">🕸 Nee</button>
+    <h1>Snoep of je leven? 🎃</h1>
+    <div class="btns">
+      <button class="btn yes" id="treat" type="button">🍬 Snoep</button>
+      <button class="btn" id="trick" type="button">😈 Je leven</button>
     </div>
     <p class="fine">Zet je geluid aan, het leukste stukje heeft geluid 🔊</p>
   </div>
 </section>
 
-<section class="scene" id="loading" hidden>
-  <div class="card load">
-    <div class="bag" aria-hidden="true">🍬</div>
-    <h2>Ik heb een kleine verrassing voor je</h2>
-    <p id="step">Snoep verzamelen…</p>
-    <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar"><i id="fill"></i></div>
-    <div class="pct" id="pct">0%</div>
+<section class="scene" id="gift" hidden>
+  <div class="card">
+    <div class="present" aria-hidden="true">🎁</div>
+    <p class="hello" id="giftHello">Goede keuze!</p>
+    <h1>Wil je een cadeautje?</h1>
+    <div class="btns" id="btns">
+      <button class="btn yes" id="yes" type="button">🎁 Ja</button>
+      <button class="btn no" id="no" type="button">🕸 Nee</button>
+    </div>
+    <p class="fine">Er zit een echte cadeaukaart in 👀</p>
+  </div>
+</section>
+
+<section class="scene" id="game" hidden>
+  <div class="card game">
+    <div class="gtop">
+      <div>
+        <h2>Je hebt 15 seconden!</h2>
+        <p>Klik op alle knoppen en pak je €5 cadeaukaart</p>
+      </div>
+      <div class="timer" id="timer" aria-live="polite">15</div>
+    </div>
+    <div class="giftcard" aria-hidden="true">
+      <span>CADEAUKAART</span>
+      <strong>€5,00</strong>
+      <em id="lock">🔒 0/12</em>
+    </div>
+    <div class="grid" id="grid"></div>
   </div>
 </section>
 
@@ -222,7 +274,7 @@ h1 {
 <script>
 (function () {
   const $ = (id) => document.getElementById(id);
-  const ask = $("ask"), loading = $("loading"), end = $("end");
+  const ask = $("ask"), end = $("end");
   const yes = $("yes"), no = $("no");
   const video = $("video"), scare = $("scare"), flash = $("flash"), dim = $("dim"), skip = $("skip");
   const fallback = $("fallback");
@@ -490,7 +542,7 @@ h1 {
     dodges++;
     no.textContent = noTexts[dodges];
     yes.classList.add("grow");
-    const card = ask.querySelector(".card").getBoundingClientRect();
+    const card = $("gift").querySelector(".card").getBoundingClientRect();
     const nb = no.getBoundingClientRect();
     const homeX = nb.left - offX, homeY = nb.top - offY;
     const minX = card.left + 10, maxX = card.right - nb.width - 10;
@@ -538,52 +590,66 @@ h1 {
     if (fs && fn) { try { const r = fn.call(document); if (r && r.catch) r.catch(() => {}); } catch (e) {} }
   }
 
-  let started = false;
+  const gift = $("gift"), game = $("game");
+  let looked = false;
+  function chooseTrickOrTreat(kind) {
+    primeAudio();
+    unlockVideo();
+    if (!looked) { looked = true; lookup(); readBattery(); }
+    $("giftHello").textContent = kind === "treat" ? "Snoep dus! Goede keuze 🍬" : "Durfal! 😈 Maar eerst iets leuks…";
+    ask.hidden = true;
+    gift.hidden = false;
+  }
+  $("treat").addEventListener("click", () => chooseTrickOrTreat("treat"));
+  $("trick").addEventListener("click", () => chooseTrickOrTreat("trick"));
+
+  let started = false, gameTick = 0, gameScare = 0;
   function begin() {
     if (started) return;
     started = true;
     primeAudio();
-    lookup();
-    readBattery();
     unlockVideo();
     goFull();
-    ask.hidden = true;
-    loading.hidden = false;
-    runLoader();
+    gift.hidden = true;
+    game.hidden = false;
+    runGame();
   }
 
-  function runLoader() {
-    const steps = [
-      [0, "Snoep verzamelen…"],
-      [22, "Pompoen uithollen…"],
-      [45, "Kaarsjes aansteken…"],
-      [68, "Kostuums aantrekken…"],
-      [86, "Bijna klaar…"]
-    ];
-    let p = 0;
-    const fill = $("fill"), pct = $("pct"), step = $("step"), bar = $("bar");
-    const t = setInterval(() => {
-      const rate = p < 60 ? 4 + Math.random() * 5 : p < 88 ? 1.5 + Math.random() * 3 : .6;
-      p = Math.min(93, p + rate);
-      const v = Math.floor(p);
-      fill.style.width = v + "%";
-      pct.textContent = v + "%";
-      bar.setAttribute("aria-valuenow", String(v));
-      for (const [at, txt] of steps) if (v >= at) step.textContent = txt;
-      if (p >= 93) {
-        clearInterval(t);
-        step.textContent = "Wacht even… is het licht uitgevallen? 🕯️";
-        setTimeout(() => {
-          dim.classList.add("flicker");
-          setTimeout(scareNow, 1150);
-        }, 700);
-      }
-    }, 140);
+  function runGame() {
+    const grid = $("grid"), lock = $("lock"), timer = $("timer");
+    const faces = ["🎃", "🍬", "👻", "🍭", "🦇", "🍫"];
+    const total = 12;
+    let done = 0, left = 15;
+    grid.textContent = "";
+    timer.textContent = String(left);
+    lock.textContent = "🔒 0/" + total;
+    for (let i = 0; i < total; i++) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "tile";
+      b.textContent = faces[i % faces.length];
+      b.setAttribute("aria-label", "Knop " + (i + 1));
+      b.addEventListener("click", () => {
+        if (b.classList.contains("done")) return;
+        b.classList.add("done");
+        b.textContent = "✅";
+        done++;
+        lock.textContent = (done >= total ? "🔓 " : "🔒 ") + done + "/" + total;
+      });
+      grid.appendChild(b);
+    }
+    gameTick = setInterval(() => {
+      left = Math.max(0, left - 1);
+      timer.textContent = String(left);
+      timer.classList.remove("tick"); void timer.offsetWidth; timer.classList.add("tick");
+    }, 1000);
+    gameScare = setTimeout(scareNow, 4000);
   }
 
   function scareNow() {
     running = false;
-    loading.hidden = true;
+    clearInterval(gameTick); clearTimeout(gameScare);
+    game.hidden = true;
     scare.hidden = false;
     video.currentTime = 0;
     video.muted = false;
@@ -641,7 +707,6 @@ h1 {
     no.textContent = noTexts[0]; no.style.transform = ""; offX = 0; offY = 0;
     yes.classList.remove("grow");
     $("reply").textContent = "";
-    $("fill").style.width = "0%"; $("pct").textContent = "0%"; $("step").textContent = "Snoep verzamelen…";
     end.hidden = true;
     ask.hidden = false;
   });
